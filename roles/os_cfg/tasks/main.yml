@@ -1,0 +1,14 @@
+---
+#--------------------------------------
+# Przygotowanie domowego RPi do roli serwera-pomagiera sieci LAN.
+#   Wstępna konfiguracja OS.
+#--------------------------------------
+
+  - name: Kolarze do sudo
+    copy:
+        src: wheel.conf
+        dest: /etc/sudoers.d/wheel
+        owner: root
+        group: root
+        mode: 0440
+    tags: "CFG_FILES"

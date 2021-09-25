@@ -1,0 +1,12 @@
+---
+#--------------------------------------
+# Przygotowanie domowego RPi do roli serwera-pomagiera sieci LAN.
+#   Playbook główny.
+#--------------------------------------
+- hosts: all
+  gather_facts: False
+  any_errors_fatal: True
+  remote_user: root
+
+  roles:
+    - role: os_cfg
