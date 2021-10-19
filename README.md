@@ -33,4 +33,17 @@ Konfiguracja podstawowych ustawień systemu "po wyjęciu z pudełka".
 - **Kolarze do sudo** - kopiuje dropin `wheel.conf` do `/etc/sudoers.d/wheel`.
 Zmienia na `NOPASSWD`.
 
-- **Potrzebne paczki** - instaluje pakiety z listy ``roles/os_cfg/vars/main.yml:pkgs`
+	**TAG:**
+
+- **Potrzebne paczki** - instaluje pakiety z listy `roles/os_cfg/vars/main.yml:pkgs`
+
+## `dns_master`
+
+Konfiguracja master DNS serwera dla strefy `dev.null`.
+
+- **named.conf** - dystrybucja pliku konfiguracyjnego `/etc/named.conf`.
+- **db.devnull** - dystrybucja pliku konfiguracyjnego `/var/named/db.devnull`.
+	**TAG:** DNS_ZONE_FILES
+- **db.192** - dystrybucja pliku konfiguracyjnego `/var/named/db.192`.
+
+	**TAG:** DNS_ZONE_FILES
