@@ -10,7 +10,7 @@ Setup domowej Fedory na RPi (na wypadek reinstalacji)
 1. Odpal playbooka w trybie weryfikacji:
 
 	```shell
-$ ansible-playbook  rpi-setup.yml --check
+	$ ansible-playbook  rpi-setup.yml --check
 	
 	```
 
