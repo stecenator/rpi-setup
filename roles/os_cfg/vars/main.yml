@@ -11,6 +11,4 @@ dns_search:
     - pl.ibm.com
 
 pkgs:
-    - bind
-    - bind-utils
     - telnet

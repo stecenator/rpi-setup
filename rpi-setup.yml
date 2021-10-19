@@ -10,3 +10,4 @@
 
   roles:
     - role: os_cfg
+    - role: dns_master

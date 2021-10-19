@@ -39,11 +39,22 @@ Zmienia na `NOPASSWD`.
 
 ## `dns_master`
 
-Konfiguracja master DNS serwera dla strefy `dev.null`.
+Konfiguracja master DNS serwera dla strefy `dev.null`. Wykonanie całej roli przez taga DNS_MASTER.
 
 - **named.conf** - dystrybucja pliku konfiguracyjnego `/etc/named.conf`.
 - **db.devnull** - dystrybucja pliku konfiguracyjnego `/var/named/db.devnull`.
-	**TAG:** DNS_ZONE_FILES
+
+	**TAG:** DNS_ZONE_FILES, DNS_MASTER
+
 - **db.192** - dystrybucja pliku konfiguracyjnego `/var/named/db.192`.
 
-	**TAG:** DNS_ZONE_FILES
+	**TAG:** DNS_ZONE_FILES, DNS_MASTER
+
+- **bind9** - Włączą demona `named`
+
+	**TAG:** DNS_SRV, DNS_MASTER
+
+- **firewall** - włącza dostęp do portu 53.
+
+	**TAG:** DNS_FW, DNS_MASTER
+ 
