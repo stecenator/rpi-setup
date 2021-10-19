@@ -29,3 +29,9 @@
     when: item is regex(".*{{ hostvars['ifname'] }}$")
     with_items: "{{ nmout.stdout_lines }}"
     tags: "NET"
+
+  - name: Potrzebne paczki
+    dnf:
+      name: "{{ pkgs }}"
+      state: present
+    tags: "PKGS"

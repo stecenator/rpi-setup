@@ -1,6 +1,6 @@
 dns_servers:
     - 192.168.1.12
-    - 89.108.195.20
+    - 192.168.1.29
     - 89.108.195.21
 
 dom_name: dev.null
@@ -9,3 +9,8 @@ dns_search:
     - dev.null
     - iic.pl.ibm.com
     - pl.ibm.com
+
+pkgs:
+    - bind
+    - bind-utils
+    - telnet
