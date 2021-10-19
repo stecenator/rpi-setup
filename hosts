@@ -1,2 +1,3 @@
 [all]
-pi.dev.null
+pi.dev.null ifname="eth0"
+# fredzia.host-only ifname="ens3"

@@ -6,7 +6,7 @@ Setup domowej Fedory na RPi (na wypadek reinstalacji)
 Poszczególne etapy przygotowania Raspberry do roli domowego serwera 
 zostały rozbite na kilka zadań.
 
-## `os-cfg`
+## `os_cfg`
 
 Konfiguracja podstawowych ustawień systemu "po wyjęciu z pudełka".
 

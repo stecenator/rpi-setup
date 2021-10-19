@@ -4,7 +4,7 @@
 #   Playbook główny.
 #--------------------------------------
 - hosts: all
-  gather_facts: False
+  gather_facts: True
   any_errors_fatal: True
   remote_user: root
 

@@ -12,3 +12,20 @@
         group: root
         mode: 0440
     tags: "CFG_FILES"
+
+  - name: Pokaż flaki
+    debug:
+        var: ansible_facts
+    tags: "DBG"
+
+  - name: Lista połączeń nmcli
+    shell: nmcli -t  c s  --active | cut -f 1,4 -d ':' 
+    register: nmout
+    tags: "NET"
+    
+  - name: pokaż połączenia eth0
+    debug: 
+        msg: "Jest {{ item }}!"
+    when: item is regex(".*{{ hostvars['ifname'] }}$")
+    with_items: "{{ nmout.stdout_lines }}"
+    tags: "NET"
