@@ -1,0 +1,3 @@
+# Te zmienne trzeba ustawić w host_vars/<hostname> na True, jesli ktoś ma być masterme
+master_dns: False
+master_dhcp: False

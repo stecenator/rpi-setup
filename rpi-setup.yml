@@ -10,4 +10,7 @@
 
   roles:
     - role: os_cfg
-    - role: dns_master
+    - role: dns_master 
+      when: master_dns
+    - role: dhcpd_srv
+      when: master_dhcp
