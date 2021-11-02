@@ -2,14 +2,14 @@
 ; BIND data file for local loopback interface
 ;
 $TTL	604800
-@	IN	SOA	malina.dev.null. root.malina.dev.null. (
-			     25		; Serial
+@	IN	SOA	pi.dev.null. root.pi.aadev.null. (
+			     26		; Serial
 			 604800		; Refresh
 			  86400		; Retry
 			2419200		; Expire
 			 604800 )	; Negative Cache TTL
 ;
-@		IN	NS	malina.dev.null.
+@		IN	NS	pi.dev.null.
 @		IN	A	192.168.1.12
 asus		IN	A	192.168.1.1
 ajax		IN      A       192.168.1.2
