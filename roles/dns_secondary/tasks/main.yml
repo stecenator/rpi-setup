@@ -10,7 +10,7 @@
       state: present
     tags: 
       - "DNS_PKGS"
-      - "DNS_MASTER"
+      - "DNS_SLAVE"
 
   - name: named.conf
     copy:
@@ -21,38 +21,16 @@
         mode: 0644
     tags: 
       - "DNS_CFG_FILES"
-      - "DNS_MASTER"
-
-  - name: db.devnull
-    copy:
-        src: db.devnull
-        dest: /var/named/db.devnull
-        owner: root
-        group: root
-        mode: 0644
-    tags: 
-      - "DNS_ZONES"
-      - "DNS_MASTER"
-
-  - name: db.192
-    copy:
-        src: db.192
-        dest: /var/named/db.192
-        owner: root
-        group: root
-        mode: 0644
-    tags: 
-      - "DNS_ZONES"
-      - "DNS_MASTER"
+      - "DNS_SLAVE"
 
   - name: bind9
     systemd:
       name: named
       enabled: yes
-      state: started
+      state: reloaded
     tags: 
       - "DNS_SRV"
-      - "DNS_MASTER"
+      - "DNS_SLAVE"
 
   - name: firewall
     firewalld:
@@ -61,4 +39,4 @@
       permanent: yes
     tags:
       - "DNS_FW"
-      - "DNS_MASTER"
+      - "DNS_SLAVE"

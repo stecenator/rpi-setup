@@ -49,10 +49,11 @@
     systemd:
       name: named
       enabled: yes
-      state: started
+      state: reloaded
     tags: 
       - "DNS_SRV"
       - "DNS_MASTER"
+      - "DNS_ZONES"
 
   - name: firewall
     firewalld:
