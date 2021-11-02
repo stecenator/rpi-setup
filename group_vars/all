@@ -1,3 +1,4 @@
 # Te zmienne trzeba ustawić w host_vars/<hostname> na True, jesli ktoś ma być masterem
 master_dns: False
+second_dns: False
 master_dhcp: False
