@@ -19,16 +19,16 @@
       - "DHCP_SRV"
 
 
-  # - name: named.conf
-  #   copy:
-  #       src: named.conf
-  #       dest: /etc/named.conf
-  #       owner: root
-  #       group: root
-  #       mode: 0644
-  #   tags: 
-  #     - "DNS_CFG_FILES"
-  #     - "DNS_MASTER"
+  - name: kea-dhcp4.conf
+    copy:
+        src: kea-dhcp4.conf
+        dest: /etc/kea/kea-dhcp4.conf
+        owner: root
+        group: root
+        mode: 0644
+    tags: 
+      - "DHCP_SRV"
+      - "DHCP4"
 
   # - name: db.devnull
   #   copy:
@@ -52,20 +52,20 @@
   #     - "DNS_ZONES"
   #     - "DNS_MASTER"
 
-  # - name: bind9
-  #   systemd:
-  #     name: named
-  #     enabled: yes
-  #     state: started
-  #   tags: 
-  #     - "DNS_SRV"
-  #     - "DNS_MASTER"
+  - name: kea-dhcp4
+    systemd:
+      name: kea-dhcp4
+      enabled: yes
+      state: reloaded
+    tags: 
+      - "DHCP4"
+      - "DHCP_SRV"
 
-  # - name: firewall
-  #   firewalld:
-  #     service: dns
-  #     state: enabled
-  #     permanent: yes
-  #   tags:
-  #     - "DNS_FW"
-  #     - "DNS_MASTER"
+  - name: firewall
+    firewalld:
+      service: dhcp
+      state: enabled
+      permanent: yes
+    tags:
+      - "DHCP_SRV"
+      - "DHCP4"
