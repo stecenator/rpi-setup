@@ -23,6 +23,17 @@
       - "DNS_CFG_FILES"
       - "DNS_SLAVE"
 
+  - name: Log dir
+    file: 
+      path: /var/named/logs
+      state: directory
+      owner: named
+      group: named
+      mode: 0755
+    tags:
+      - "DNS_CFG_FILES"
+      - "DNS_SLAVE"
+
   - name: bind9
     systemd:
       name: named
@@ -31,6 +42,7 @@
     tags: 
       - "DNS_SRV"
       - "DNS_SLAVE"
+      - "DNS_CFG_FILES"
 
   - name: firewall
     firewalld:

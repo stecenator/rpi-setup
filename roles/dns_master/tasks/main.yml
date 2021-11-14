@@ -45,6 +45,17 @@
       - "DNS_ZONES"
       - "DNS_MASTER"
 
+  - name: Log dir
+    file: 
+      path: /var/named/logs
+      state: directory
+      owner: named
+      group: named
+      mode: 0755
+    tags:
+      - "DNS_CFG_FILES"
+      - "DNS_MASTER"
+
   - name: bind9
     systemd:
       name: named
@@ -54,6 +65,7 @@
       - "DNS_SRV"
       - "DNS_MASTER"
       - "DNS_ZONES"
+      - "DNS_CFG_FILES"
 
   - name: firewall
     firewalld:

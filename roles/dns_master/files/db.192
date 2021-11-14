@@ -3,13 +3,14 @@
 ;
 $TTL	604800
 @	IN	SOA	localhost. root.localhost. (
-			     28		; Serial
+			     29		; Serial
 			 604800		; Refresh
 			  86400		; Retry
 			2419200		; Expire
 			 604800 )	; Negative Cache TTL
 ;
-@	IN	NS	localhost.
+		NS  malina.dev.null.
+		NS  pi.dev.null.
 1	IN	PTR	asus.dev.null.
 2	IN	PTR	ajax.dev.null.
 3	IN	PTR	hawking.dev.null.
