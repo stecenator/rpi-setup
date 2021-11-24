@@ -2,8 +2,8 @@
 ; BIND data file for local loopback interface
 ;
 $TTL	604800
-@	IN	SOA	pi.dev.null. root.pi.aadev.null. (
-			     29		; Serial
+@	IN	SOA	pi.dev.null. root.pi.dev.null. (
+			     30		; Serial
 			 604800		; Refresh
 			  86400		; Retry
 			2419200		; Expire
@@ -20,20 +20,20 @@ kompucka	IN      A       192.168.1.6
 turing		IN      A       192.168.1.7
 fredzia		IN      A       192.168.1.8
 brother		IN      A       192.168.1.9
-lpr		IN	CNAME	brother
+lpr			IN	CNAME	brother
 huawej		IN      A       192.168.1.10
 linksys		IN      A       192.168.1.11
 malina		IN      A       192.168.1.12
 wpad		IN	CNAME	malina
 poziomka	IN      A       192.168.1.13
 filipson	IN      A       192.168.1.14
-tasiemiec       IN      A       192.168.1.15
+tasiemiec   IN      A       192.168.1.15
 luftwaffe	IN      A       192.168.1.16
 luftdaten	IN	CNAME	luftwaffe
 denon		IN      A       192.168.1.17
-centos81        IN      A       192.168.1.18
+centos81    IN      A       192.168.1.18
 gauss		IN      A       192.168.1.19
-isp		IN      A       192.168.1.20
+isp			IN      A       192.168.1.20
 tsm71		IN      CNAME   isp
 windos2012	IN	A	192.168.1.21
 isp-pri		IN	A	192.168.1.22
@@ -45,7 +45,7 @@ arch2		IN	CNAME	ncbj-arch2
 spkon		IN	A	192.168.1.26
 spgro		IN	A	192.168.1.27
 spcom		IN	A	192.168.1.28
-pi		IN	A	192.168.1.29
+pi			IN	A	192.168.1.29
 dummy30		IN	A	192.168.1.30
 dummy31		IN	A	192.168.1.31
 dummy32		IN	A	192.168.1.32
