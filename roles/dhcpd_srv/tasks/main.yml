@@ -30,33 +30,11 @@
       - "DHCP_SRV"
       - "DHCP4"
 
-  # - name: db.devnull
-  #   copy:
-  #       src: db.devnull
-  #       dest: /var/named/db.devnull
-  #       owner: root
-  #       group: root
-  #       mode: 0644
-  #   tags: 
-  #     - "DNS_ZONES"
-  #     - "DNS_MASTER"
-
-  # - name: db.192
-  #   copy:
-  #       src: db.192
-  #       dest: /var/named/db.192
-  #       owner: root
-  #       group: root
-  #       mode: 0644
-  #   tags: 
-  #     - "DNS_ZONES"
-  #     - "DNS_MASTER"
-
   - name: kea-dhcp4
     systemd:
       name: kea-dhcp4
       enabled: yes
-      state: reloaded
+      state: restarted
     tags: 
       - "DHCP4"
       - "DHCP_SRV"
