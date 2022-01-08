@@ -35,3 +35,19 @@
       name: "{{ pkgs }}"
       state: present
     tags: "PKGS"
+
+  - name: chrony.conf z szablonu
+    template:
+      src: chrony.conf.j2
+      dest: /etc/chrony.conf
+      owner: root
+      group: root
+      mode: 0644
+      backup: yes
+    tags: NTP
+
+  - name: Restart chronyd
+    service:
+      name: chronyd
+      state: restarted
+    tags: NTP
