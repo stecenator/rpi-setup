@@ -1,0 +1,13 @@
+---
+#--------------------------------------
+# Przygotowanie domowego RPi do roli serwera-pomagiera sieci LAN.
+#   Konfiguracja serwera DHCPD master
+#--------------------------------------
+
+  - name: Potrzebne paczki
+    dnf:
+      name: "{{ ha_pkgs }}"
+      state: present
+    tags: 
+      - "HA_PKGS"
+      - "HA"

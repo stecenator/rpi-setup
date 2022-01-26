@@ -2,3 +2,4 @@
 master_dns: False
 second_dns: False
 master_dhcp: False
+ha_srv: False

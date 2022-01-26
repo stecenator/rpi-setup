@@ -115,3 +115,12 @@ Intalacja i konfiguracja serwera Kea.
 - **firewall** - Otwarcie usługi DHCP dla świata.
 
  	**TAG:** DHCP_SRV, DHCP
+
+## `ha` - Home Assistant
+
+Instalacja i konfiguracja Home Assistanta. 
+Taski:
+
+- **Potrzebne paczki** - instalacja pakietóœ z listy `ha_pkgs`.
+	**TAG**: HA, HA_PKGS
+- 

@@ -16,3 +16,5 @@
       when: second_dns
     - role: dhcpd_srv
       when: master_dhcp
+    - role: ha
+      when: ha_srv

@@ -1,0 +1,4 @@
+ha_pkgs:
+  - podman
+  - podman-docker
+  - libseccomp
