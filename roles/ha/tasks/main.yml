@@ -1,7 +1,6 @@
 ---
 #--------------------------------------
-# Przygotowanie domowego RPi do roli serwera-pomagiera sieci LAN.
-#   Konfiguracja serwera DHCPD master
+# Przygotowanie domowego RPi do roli kotrolera Home-Assistant w podmanie
 #--------------------------------------
 
   - name: Potrzebne paczki
@@ -11,3 +10,57 @@
     tags: 
       - "HA_PKGS"
       - "HA"
+
+  - name: User do kontenera
+    user:
+      name: homeass
+      comment: "Hołm Assistant"
+    tags: 
+      - "HA"
+      - "HA_USR"
+
+  - name: Wymiana klucza z homeass
+    authorized_key:
+     user: homeass
+     state: present
+     key: "{{ lookup('file', '/home/marcinek/.ssh/id_ecdsa-gauss.pub') }}"
+    tags: 
+      - "HA"
+      - "HA_USR"
+
+  - name: firewall
+    firewalld:
+      port: 8123/tcp
+      permanent: yes
+      state: enabled
+    tags:
+      - "HA"
+      - "HA_FW"
+
+  - name: Katalog konfiguracji
+    file:
+      path: /home/homeass/hass_cfg
+      state: directory
+      owner: homeass
+      group: homeass
+      mode: 0755
+    tags:
+      - "HA"
+      - "HA_CFG"
+
+  - name: Kontener Home Assistant
+    become: yes
+    become_user: homeass
+    containers.podman.podman_container:
+      name: homeass
+      image: ghcr.io/home-assistant/home-assistant:stable
+      init: yes
+      network: host
+      restart_policy: "on-failure:3"
+      state: started
+      volume:
+        - "/etc/localtime:/etc/localtime:ro"
+        - "/home/homeass/hass_cfg:/config:Z"
+    tags:
+      - "HA"
+      - "HA_CONTAINER"
