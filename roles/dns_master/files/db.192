@@ -3,7 +3,7 @@
 ;
 $TTL	604800
 @	IN	SOA	dev.null. root.pi.dev.null. (
-			     30		; Serial
+			     33		; Serial
 			 604800		; Refresh
 			  86400		; Retry
 			2419200		; Expire
@@ -23,14 +23,14 @@ $TTL	604800
 10	IN	PTR	huawej.dev.null.
 11	IN	PTR	linksys.dev.null.
 12	IN	PTR	malina.dev.null.
-13	IN	PTR	poziomka.dev.null.
+13	IN	PTR	marysia.dev.null.
 14	IN	PTR	filipson.dev.null.
 15	IN	PTR	tasiemiec.dev.null.
 16	IN	PTR	luftwaffe.dev.null.
 17	IN	PTR	denon.dev.null.
-18	IN	PTR	centos81.dev.null.
+18	IN	PTR	zigbee.dev.null.
 19	IN	PTR	gauss.dev.null.
-20	IN	PTR	isp.dev.null.
+20	IN	PTR	growatt.dev.null.
 21	IN	PTR	windos2012.dev.null.
 22	IN	PTR	isp-pri.dev.null.
 23	IN	PTR	isp-sec.dev.null.
