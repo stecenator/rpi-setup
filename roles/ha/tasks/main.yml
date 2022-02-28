@@ -61,6 +61,24 @@
       volume:
         - "/etc/localtime:/etc/localtime:ro"
         - "/home/homeass/hass_cfg:/config:Z"
+      generate_systemd:
+        path: /home/homeass
+        container_prefix: ha
+        restart_policy: "on-failure"
     tags:
       - "HA"
       - "HA_CONTAINER"
+
+  - name: Kontenener pezez systemd
+    copy: 
+      src: /home/homeass/ha-homeass.service
+      dest: /etc/systemd/system/
+      owner: root
+      group: root
+      mode: 0644
+      remote_src: yes
+
+  - name: Reload systemd
+    systemd: 
+      daemon_reload: yes
+      
