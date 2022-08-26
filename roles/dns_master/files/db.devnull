@@ -3,7 +3,7 @@
 ;
 $TTL	604800
 @	IN	SOA	pi.dev.null. root.pi.dev.null. (
-			     33		; Serial
+			     34		; Serial
 			 604800		; Refresh
 			  86400		; Retry
 			2419200		; Expire
@@ -22,7 +22,7 @@ fredzia		IN      A       192.168.1.8
 brother		IN      A       192.168.1.9
 lpr			IN	CNAME	brother
 huawej		IN      A       192.168.1.10
-linksys		IN      A       192.168.1.11
+repeater	IN      A       192.168.1.11
 malina		IN      A       192.168.1.12
 wpad		IN	CNAME	malina
 marysia		IN      A       192.168.1.13
@@ -37,13 +37,11 @@ growatt		IN      A       192.168.1.20
 windos2012	IN	A	192.168.1.21
 isp-pri		IN	A	192.168.1.22
 isp-sec		IN	A	192.168.1.23
-ncbj-arch1	IN	A	192.168.1.24
-arch1		IN	CNAME	ncbj-arch1
-ncbj-arch2	IN	A	192.168.1.25
-arch2		IN	CNAME	ncbj-arch2
-spkon		IN	A	192.168.1.26
-spgro		IN	A	192.168.1.27
-spcom		IN	A	192.168.1.28
+dummy24		IN	A	192.168.1.24
+dummy25		IN	A	192.168.1.25
+dummy26		IN	A	192.168.1.26
+dummy27		IN	A	192.168.1.27
+dummy28		IN	A	192.168.1.28
 pi			IN	A	192.168.1.29
 dummy30		IN	A	192.168.1.30
 dummy31		IN	A	192.168.1.31

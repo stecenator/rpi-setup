@@ -3,7 +3,7 @@
 ;
 $TTL	604800
 @	IN	SOA	dev.null. root.pi.dev.null. (
-			     33		; Serial
+			     34		; Serial
 			 604800		; Refresh
 			  86400		; Retry
 			2419200		; Expire
@@ -21,7 +21,7 @@ $TTL	604800
 8	IN	PTR	fredzia.dev.null.
 9	IN	PTR	brother.dev.null.
 10	IN	PTR	huawej.dev.null.
-11	IN	PTR	linksys.dev.null.
+11	IN	PTR	repeater.dev.null.
 12	IN	PTR	malina.dev.null.
 13	IN	PTR	marysia.dev.null.
 14	IN	PTR	filipson.dev.null.
@@ -34,11 +34,11 @@ $TTL	604800
 21	IN	PTR	windos2012.dev.null.
 22	IN	PTR	isp-pri.dev.null.
 23	IN	PTR	isp-sec.dev.null.
-24	IN	PTR	ncbj-arch1.dev.null.
-25	IN	PTR	ncbj-arch2.dev.null.
-26	IN	PTR	spkon.dev.null.
-27	IN	PTR	spgro.dev.null.
-28	IN	PTR	spcom.dev.null.
+24	IN	PTR	dummy24.dev.null.
+25	IN	PTR	dummy25.dev.null.
+26	IN	PTR	dummy26.dev.null.
+27	IN	PTR	dummy27.dev.null.
+28	IN	PTR	dummy28.dev.null.
 29	IN	PTR	pi.dev.null.
 30	IN	PTR	dummy30.dev.null.
 31	IN	PTR	dummy31.dev.null.
