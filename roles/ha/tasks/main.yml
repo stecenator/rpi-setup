@@ -69,6 +69,15 @@
       - "HA"
       - "HA_CONTAINER"
 
+  - name: Chrum chrum na systemd
+    lineinfile:
+      path: /home/homeass/ha-homeass.service
+      insertafter: 'Service'
+      line: "User=homeass"
+    tags:
+      - "HA"
+      - "HA_SYSD"
+
   - name: Kontenener pezez systemd
     copy: 
       src: /home/homeass/ha-homeass.service
@@ -77,8 +86,22 @@
       group: root
       mode: 0644
       remote_src: yes
+    tags:
+      - "HA"
+      - "HA_SYSD"
 
   - name: Reload systemd
     systemd: 
       daemon_reload: yes
-      
+    tags:
+      - "HA"
+      - "HA_SYSD"
+
+  - name: Enejbyl homeass kontener
+    systemd:
+      name: ha-homeass
+      enabled: yes
+      state: stopped
+    tags:
+      - "HA"
+      - "HA_SYSD"

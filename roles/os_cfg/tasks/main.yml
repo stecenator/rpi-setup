@@ -18,17 +18,17 @@
         var: ansible_facts
     tags: "DBG"
 
-  - name: Lista połączeń nmcli
-    shell: nmcli -t  c s  --active | cut -f 1,4 -d ':' 
-    register: nmout
-    tags: "NET"
+#  - name: Lista połączeń nmcli
+#    shell: nmcli -t  c s  --active | cut -f 1,4 -d ':' 
+#    register: nmout
+#    tags: "NET"
     
-  - name: pokaż połączenia eth0
-    debug: 
-        msg: "Jest {{ item }}!"
-    when: item is regex(".*{{ hostvars['ifname'] }}$")
-    with_items: "{{ nmout.stdout_lines }}"
-    tags: "NET"
+#  - name: pokaż połączenia eth0
+#    debug: 
+#        msg: "Jest {{ item }}!"
+#    when: item is regex(".*{{ hostvars['ifname'] }}$")
+#    with_items: "{{ nmout.stdout_lines }}"
+#    tags: "NET"
 
   - name: Potrzebne paczki
     dnf:
