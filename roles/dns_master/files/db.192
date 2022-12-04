@@ -3,7 +3,7 @@
 ;
 $TTL	604800
 @	IN	SOA	dev.null. root.pi.dev.null. (
-			     37		; Serial
+			     38		; Serial
 			 604800		; Refresh
 			  86400		; Retry
 			2419200		; Expire
@@ -11,7 +11,7 @@ $TTL	604800
 ;
 		NS  malina.dev.null.
 		NS  pi.dev.null.
-1	IN	PTR	asus.dev.null.
+1	IN	PTR	ubik.dev.null.
 2	IN	PTR	ajax.dev.null.
 3	IN	PTR	hawking.dev.null.
 4	IN	PTR	dagmara.dev.null.
