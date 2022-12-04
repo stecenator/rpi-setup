@@ -3,7 +3,7 @@
 ;
 $TTL	604800
 @	IN	SOA	pi.dev.null. root.pi.dev.null. (
-			     34		; Serial
+			     38		; Serial
 			 604800		; Refresh
 			  86400		; Retry
 			2419200		; Expire
@@ -11,7 +11,8 @@ $TTL	604800
 ;
 @			IN		NS		pi.dev.null.
 @			IN		NS		malina.dev.null.
-asus		IN		A		192.168.1.1
+ubik		IN		A		192.168.1.1
+ubiqiti		IN		CNAME	ubik
 ajax		IN      A       192.168.1.2
 hawking		IN      A       192.168.1.3
 dagmara		IN      A       192.168.1.4
@@ -34,10 +35,12 @@ denon		IN      A       192.168.1.17
 zigbee	    IN      A       192.168.1.18
 gauss		IN      A       192.168.1.19
 growatt		IN      A       192.168.1.20
-windos2012	IN	A	192.168.1.21
-isp-pri		IN	A	192.168.1.22
-isp-sec		IN	A	192.168.1.23
-dummy24		IN	A	192.168.1.24
+icx-mgmt	IN		A		192.168.1.21
+icx			IN		A		192.168.1.22
+icek		IN		CNAME	icx
+ap1			IN	A	192.168.1.23
+ruckus		IN		CNAME	ap1
+ap2			IN	A	192.168.1.24
 dummy25		IN	A	192.168.1.25
 dummy26		IN	A	192.168.1.26
 dummy27		IN	A	192.168.1.27
