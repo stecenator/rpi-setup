@@ -75,3 +75,4 @@
     tags:
       - "DNS_FW"
       - "DNS_MASTER"
+      - "DNS_SRV"
