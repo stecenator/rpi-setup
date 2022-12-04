@@ -3,7 +3,7 @@
 ;
 $TTL	604800
 @	IN	SOA	dev.null. root.pi.dev.null. (
-			     34		; Serial
+			     37		; Serial
 			 604800		; Refresh
 			  86400		; Retry
 			2419200		; Expire
@@ -31,10 +31,10 @@ $TTL	604800
 18	IN	PTR	zigbee.dev.null.
 19	IN	PTR	gauss.dev.null.
 20	IN	PTR	growatt.dev.null.
-21	IN	PTR	windos2012.dev.null.
-22	IN	PTR	isp-pri.dev.null.
-23	IN	PTR	isp-sec.dev.null.
-24	IN	PTR	dummy24.dev.null.
+21	IN	PTR	icx-mgmt.dev.null.
+22	IN	PTR	icx.dev.null.
+23	IN	PTR	ap1.dev.null.
+24	IN	PTR	ap2.dev.null.
 25	IN	PTR	dummy25.dev.null.
 26	IN	PTR	dummy26.dev.null.
 27	IN	PTR	dummy27.dev.null.
