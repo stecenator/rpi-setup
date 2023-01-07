@@ -2,3 +2,6 @@ ha_pkgs:
   - podman
   - podman-docker
   - libseccomp
+
+ha_user: "homeass"
+service_name: "utopia"

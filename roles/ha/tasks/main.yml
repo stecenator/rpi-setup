@@ -13,15 +13,26 @@
 
   - name: User do kontenera
     user:
-      name: homeass
+      name: "{{ ha_user }}"
       comment: "Hołm Assistant"
+    register: user_info
     tags: 
       - "HA"
       - "HA_USR"
+      - "HA_SYSD"
+
+  - name: Określanie UID dla "{{ ha_user }}"
+    command: "id -u {{ ha_user }}"
+    register: ha_uid
+    check_mode: false  # żeby walidacja --check playbooka chodziła
+    tags: 
+      - "HA"
+      - "HA_USR"
+      - "HA_SYSD"
 
   - name: Wymiana klucza z homeass
     authorized_key:
-     user: homeass
+     user: "{{ ha_user }}"
      state: present
      key: "{{ lookup('file', '/home/marcinek/.ssh/id_ecdsa-gauss.pub') }}"
     tags: 
@@ -39,20 +50,81 @@
 
   - name: Katalog konfiguracji
     file:
-      path: /home/homeass/hass_cfg
+      path: "/home/{{ ha_user }}/hass_cfg"
       state: directory
-      owner: homeass
-      group: homeass
+      owner: "{{ ha_user }}"
+      group: "{{ ha_user }}"
       mode: 0755
     tags:
       - "HA"
       - "HA_CFG"
 
+  - name: Ustawianie katalogu systemd dla home-assistant
+    set_fact:
+      service_files_dir: "/home/{{ ha_user }}/.config/systemd/user"
+      systemd_scope: user
+    changed_when: false
+    tags:
+      - "HA"
+      - "HA_CFG"
+
+  - name: Katalog na pliki usług systemd
+    file:
+      path: "{{ service_files_dir }}"
+      state: directory
+      owner: "{{ ha_user }}"
+      group: "{{ ha_user }}"
+    tags:
+      - "HA"
+      - "HA_CFG"
+      - "HA_SYSD"
+
+  - name: Sprawdzanie lingering na homeass
+    stat:
+      path: "/var/lib/systemd/linger/{{ ha_user }}"
+    register: user_lingering
+    when: ha_user != "root"
+    tags:
+      - "HA"
+      - "HA_CFG"
+      - "HA_SYSD"
+
+  - name: Włączanie lingeringu na homeass
+    command: "loginctl enable-linger {{ ha_user }}"
+    when:
+      - ha_user != "root"
+      - not user_lingering.stat.exists
+    tags:
+      - "HA"
+      - "HA_CFG"
+      - "HA_SYSD"
+
+  - name: Runtime dir dla systemd 
+    set_fact:
+      xdg_runtime_dir: "/run/user/{{ ha_uid.stdout }}"
+    changed_when: false
+    tags:
+      - "HA"
+      - "HA_CFG"
+      - "HA_SYSD"
+
+  - name: Ustawianie scope na system gdy kontener działa jako root
+    set_fact:
+      systemd_scope: system
+      service_files_dir: '/etc/systemd/system'
+      xdg_runtime_dir: "/run/user/{{ ha_uid.stdout }}"
+    when: ha_user == "root"
+    changed_when: false
+    tags:
+      - "HA"
+      - "HA_CFG"
+      - "HA_SYSD"
+
   - name: Kontener Home Assistant
     become: yes
-    become_user: homeass
+    become_user: "{{ ha_user }}"
     containers.podman.podman_container:
-      name: homeass
+      name: "{{ service_name }}"
       image: ghcr.io/home-assistant/home-assistant:stable
       init: no
       network: host
@@ -60,46 +132,23 @@
       state: started
       volume:
         - "/etc/localtime:/etc/localtime:ro"
-        - "/home/homeass/hass_cfg:/config:Z"
+        - "/home/{{ ha_user }}/hass_cfg:/config:Z"
       generate_systemd:
-        path: /home/homeass
+        path: "{{ service_files_dir }}"
         container_prefix: ha
         restart_policy: "on-failure"
     tags:
       - "HA"
       - "HA_CONTAINER"
 
-  - name: Chrum chrum na systemd
-    lineinfile:
-      path: /home/homeass/ha-homeass.service
-      insertafter: 'Service'
-      line: "User=homeass"
-    tags:
-      - "HA"
-      - "HA_SYSD"
-
-  - name: Kontenener pezez systemd
-    copy: 
-      src: /home/homeass/ha-homeass.service
-      dest: /etc/systemd/system/
-      owner: root
-      group: root
-      mode: 0644
-      remote_src: yes
-    tags:
-      - "HA"
-      - "HA_SYSD"
-
-  - name: Reload systemd
-    systemd: 
-      daemon_reload: yes
-    tags:
-      - "HA"
-      - "HA_SYSD"
-
   - name: Enejbyl homeass kontener
+    become: true
+    become_user: "{{ ha_user }}"
+    environment:
+      XDG_RUNTIME_DIR: "{{ xdg_runtime_dir }}"
     systemd:
-      name: ha-homeass
+      name: "{{ service_name }}"
+      scope: "{{ systemd_scope }}"
       enabled: yes
       state: stopped
     tags:
