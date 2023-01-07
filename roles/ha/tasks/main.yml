@@ -54,7 +54,7 @@
     containers.podman.podman_container:
       name: homeass
       image: ghcr.io/home-assistant/home-assistant:stable
-      init: yes
+      init: no
       network: host
       restart_policy: "on-failure:3"
       state: started
