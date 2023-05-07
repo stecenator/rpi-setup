@@ -3,7 +3,7 @@
 ;
 $TTL	604800
 @	IN	SOA	dev.null. root.pi.dev.null. (
-			     30		; Serial
+			     39		; Serial
 			 604800		; Refresh
 			  86400		; Retry
 			2419200		; Expire
@@ -11,7 +11,7 @@ $TTL	604800
 ;
 		NS  malina.dev.null.
 		NS  pi.dev.null.
-1	IN	PTR	asus.dev.null.
+1	IN	PTR	ubik.dev.null.
 2	IN	PTR	ajax.dev.null.
 3	IN	PTR	hawking.dev.null.
 4	IN	PTR	dagmara.dev.null.
@@ -21,24 +21,24 @@ $TTL	604800
 8	IN	PTR	fredzia.dev.null.
 9	IN	PTR	brother.dev.null.
 10	IN	PTR	huawej.dev.null.
-11	IN	PTR	linksys.dev.null.
+11	IN	PTR	repeater.dev.null.
 12	IN	PTR	malina.dev.null.
-13	IN	PTR	poziomka.dev.null.
+13	IN	PTR	marysia.dev.null.
 14	IN	PTR	filipson.dev.null.
 15	IN	PTR	tasiemiec.dev.null.
 16	IN	PTR	luftwaffe.dev.null.
 17	IN	PTR	denon.dev.null.
-18	IN	PTR	centos81.dev.null.
+18	IN	PTR	zigbee.dev.null.
 19	IN	PTR	gauss.dev.null.
-20	IN	PTR	isp.dev.null.
-21	IN	PTR	windos2012.dev.null.
-22	IN	PTR	isp-pri.dev.null.
-23	IN	PTR	isp-sec.dev.null.
-24	IN	PTR	ncbj-arch1.dev.null.
-25	IN	PTR	ncbj-arch2.dev.null.
-26	IN	PTR	spkon.dev.null.
-27	IN	PTR	spgro.dev.null.
-28	IN	PTR	spcom.dev.null.
+20	IN	PTR	growatt.dev.null.
+21	IN	PTR	icx-mgmt.dev.null.
+22	IN	PTR	icx.dev.null.
+23	IN	PTR	ap1.dev.null.
+24	IN	PTR	ap2.dev.null.
+25	IN	PTR	panama.dev.null.
+26	IN	PTR	dummy26.dev.null.
+27	IN	PTR	dummy27.dev.null.
+28	IN	PTR	dummy28.dev.null.
 29	IN	PTR	pi.dev.null.
 30	IN	PTR	dummy30.dev.null.
 31	IN	PTR	dummy31.dev.null.

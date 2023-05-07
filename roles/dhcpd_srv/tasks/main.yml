@@ -33,8 +33,8 @@
   - name: kea-dhcp4
     systemd:
       name: kea-dhcp4
-      enabled: yes
-      state: restarted
+      enabled: no
+      state: stopped
     tags: 
       - "DHCP4"
       - "DHCP_SRV"

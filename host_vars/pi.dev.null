@@ -1,2 +1,3 @@
 master_dns: True 
 master_dhcp: True
+ha_srv: True

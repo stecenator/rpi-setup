@@ -3,7 +3,7 @@
 ;
 $TTL	604800
 @	IN	SOA	pi.dev.null. root.pi.dev.null. (
-			     30		; Serial
+			     39		; Serial
 			 604800		; Refresh
 			  86400		; Retry
 			2419200		; Expire
@@ -11,7 +11,8 @@ $TTL	604800
 ;
 @			IN		NS		pi.dev.null.
 @			IN		NS		malina.dev.null.
-asus		IN		A		192.168.1.1
+ubik		IN		A		192.168.1.1
+ubiqiti		IN		CNAME	ubik
 ajax		IN      A       192.168.1.2
 hawking		IN      A       192.168.1.3
 dagmara		IN      A       192.168.1.4
@@ -22,29 +23,28 @@ fredzia		IN      A       192.168.1.8
 brother		IN      A       192.168.1.9
 lpr			IN	CNAME	brother
 huawej		IN      A       192.168.1.10
-linksys		IN      A       192.168.1.11
+repeater	IN      A       192.168.1.11
 malina		IN      A       192.168.1.12
 wpad		IN	CNAME	malina
-poziomka	IN      A       192.168.1.13
+marysia		IN      A       192.168.1.13
 filipson	IN      A       192.168.1.14
 tasiemiec   IN      A       192.168.1.15
 luftwaffe	IN      A       192.168.1.16
 luftdaten	IN	CNAME	luftwaffe
 denon		IN      A       192.168.1.17
-centos81    IN      A       192.168.1.18
+zigbee	    IN      A       192.168.1.18
 gauss		IN      A       192.168.1.19
-isp			IN      A       192.168.1.20
-tsm71		IN      CNAME   isp
-windos2012	IN	A	192.168.1.21
-isp-pri		IN	A	192.168.1.22
-isp-sec		IN	A	192.168.1.23
-ncbj-arch1	IN	A	192.168.1.24
-arch1		IN	CNAME	ncbj-arch1
-ncbj-arch2	IN	A	192.168.1.25
-arch2		IN	CNAME	ncbj-arch2
-spkon		IN	A	192.168.1.26
-spgro		IN	A	192.168.1.27
-spcom		IN	A	192.168.1.28
+growatt		IN      A       192.168.1.20
+icx-mgmt	IN		A		192.168.1.21
+icx			IN		A		192.168.1.22
+icek		IN		CNAME	icx
+ap1			IN	A	192.168.1.23
+ruckus		IN		CNAME	ap1
+ap2			IN	A	192.168.1.24
+panama		IN	A	192.168.1.25
+dummy26		IN	A	192.168.1.26
+dummy27		IN	A	192.168.1.27
+dummy28		IN	A	192.168.1.28
 pi			IN	A	192.168.1.29
 dummy30		IN	A	192.168.1.30
 dummy31		IN	A	192.168.1.31
