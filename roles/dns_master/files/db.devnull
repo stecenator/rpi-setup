@@ -3,7 +3,7 @@
 ;
 $TTL	604800
 @	IN	SOA	pi.dev.null. root.pi.dev.null. (
-			     38		; Serial
+			     39		; Serial
 			 604800		; Refresh
 			  86400		; Retry
 			2419200		; Expire
@@ -41,7 +41,7 @@ icek		IN		CNAME	icx
 ap1			IN	A	192.168.1.23
 ruckus		IN		CNAME	ap1
 ap2			IN	A	192.168.1.24
-dummy25		IN	A	192.168.1.25
+panama		IN	A	192.168.1.25
 dummy26		IN	A	192.168.1.26
 dummy27		IN	A	192.168.1.27
 dummy28		IN	A	192.168.1.28
