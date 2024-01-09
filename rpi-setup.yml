@@ -12,8 +12,6 @@
     - role: os_cfg
     - role: dns_master 
       when: master_dns
-    - role: dns_secondary
-      when: second_dns
     - role: dhcpd_srv
       when: master_dhcp
     - role: ha

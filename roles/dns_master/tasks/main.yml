@@ -6,16 +6,16 @@
 
   - name: Potrzebne paczki
     dnf:
-      name: "{{ dns_pkgs }}"
+      name: "{{ dnsmasq_pkgs }}"
       state: present
     tags: 
       - "DNS_PKGS"
       - "DNS_MASTER"
 
-  - name: named.conf
+  - name: Konfiguracja lokalna do dnsmasq.conf.d
     copy:
-        src: named.conf
-        dest: /etc/named.conf
+        src: devnull.conf
+        dest: /etc/dnsmasq.d/devnull.conf
         owner: root
         group: root
         mode: 0644
@@ -23,44 +23,62 @@
       - "DNS_CFG_FILES"
       - "DNS_MASTER"
 
-  - name: db.devnull
+  - name: Wrzutka upstreamów DNS
     copy:
-        src: db.devnull
-        dest: /var/named/db.devnull
+        src: dnsmasq-forwarders.conf
+        dest: /etc/dnsmasq-forwarders.conf
         owner: root
         group: root
         mode: 0644
     tags: 
-      - "DNS_ZONES"
-      - "DNS_MASTER"
-
-  - name: db.192
-    copy:
-        src: db.192
-        dest: /var/named/db.192
-        owner: root
-        group: root
-        mode: 0644
-    tags: 
-      - "DNS_ZONES"
-      - "DNS_MASTER"
-
-  - name: Log dir
-    file: 
-      path: /var/named/logs
-      state: directory
-      owner: named
-      group: named
-      mode: 0755
-    tags:
       - "DNS_CFG_FILES"
       - "DNS_MASTER"
 
-  - name: bind9
+  - name: Włączenie parsowania dropinów na dnsmasq
+    lineinfile:
+      path: /etc/dnsmasq.conf
+      regexp: '^conf-dir='
+      line: conf-dir=/etc/dnsmasq.d,.rpmnew,.rpmsave,.rpmorig
+    tags: 
+      - "DNS_CFG_FILES"
+      - "DNS_MASTER"
+
+  - name: Włączenie słuchania na wszystkich międzymordziach
+    lineinfile:
+      path: /etc/dnsmasq.conf
+      regexp: '^interface=lo'
+      line: '# interface=lo'
+    tags: 
+      - "DNS_CFG_FILES"
+      - "DNS_MASTER"
+
+  - name: Ustawianie cache na coś więcej niż 150 wpisów. Np. na 1500
+    lineinfile:
+      path: /etc/dnsmasq.conf
+      regexp: '#cache-size='
+      line: 'cache-size=1500'
+    tags: 
+      - "DNS_CFG_FILES"
+      - "DNS_MASTER"
+
+  - name: Aktualizaccja /etc/hosts
+    lineinfile:
+        path: /etc/hosts
+        line: "{{lookup('file', 'devnull-hosts')}}"
+        create: yes
+        state: present
+        owner: root
+        group: root
+        mode: 0644
+    tags: 
+      - "DNS_ZONES"
+      - "DNS_MASTER"
+
+  - name: "(Re)startowanie dnsmasq"
     systemd:
-      name: named
+      name: dnsmasq
       enabled: yes
-      state: reloaded
+      state: restarted
     tags: 
       - "DNS_SRV"
       - "DNS_MASTER"

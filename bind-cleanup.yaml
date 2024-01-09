@@ -1,0 +1,32 @@
+---
+#--------------------------------------
+# Dekonfiguracja i usuwanie BIND9 z hostów DNSowych
+# 
+# Jednorazowy playbook do przejścia na DNSMASQ. 
+# Oba serwery mają mięć pełnoprawne serwery (czyli pełny pliki /etc/hosts)
+#--------------------------------------
+- hosts: dns_srvs
+  gather_facts: True
+  any_errors_fatal: True
+  remote_user: root
+
+  tasks:
+    - name: Zatrzymanie Binda
+      systemd:
+        name: named
+        enabled: False
+        state: stopped
+
+    - name: Usunięcie konfiguracji
+      file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - /var/named/db.devnull
+        - /var/named/db.192
+        - /etc/named.conf
+
+    - name: Deinstalacja Binda
+      dnf:
+        name: bind
+        state: absent

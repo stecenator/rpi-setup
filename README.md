@@ -44,7 +44,8 @@ Zmienia na `NOPASSWD`.
 
 ## `dns_master` - Główny DNS
 
-Konfiguracja master DNS serwera dla strefy `dev.null`. Wykonanie całej roli przez taga DNS_MASTER.
+Instaluje `dnsmasq` na wszystkich serwerach oznaczonych jako `master_dns: True` (dodana grupa `dns-srvs` i odpowiedni group_var).
+Konfiguracja master DNS (dnsmasq) serwera dla strefy `dev.null`. Wykonanie całej roli przez taga DNS_MASTER.
 
 - **Potrzebne paczki** - instalacja pakietów z listy `dns_pkgs`.
 
@@ -72,31 +73,10 @@ Konfiguracja master DNS serwera dla strefy `dev.null`. Wykonanie całej roli prz
 
 	**TAG:** DNS_FW, DNS_MASTER
  
- ## `dns_secondary` - Pomocniczy DNS
-
- Konfiguracja zapasowgo serwera DNS. Wykonanie całej roli przez taga DNS_SLAVE.
-
- - **Potrzebne paczki** - instalacja pakietów z listy `dns_pkgs`.
-
- 	**TAG:** DNS_PKGS, DNS_SLAVE
-
- - **`named.conf`** - dystrybucja pliku konfiguracyjnego `/etc/named.conf`.
-
- 	**TAG:** , DNS_SLAVE
-
-  - **Log dir** - tworzenie katalogu logów Binda.
-
- 	**TAG:** DNS_CFG_FILES, DNS_SLAVE
-
-  - **bind9** - Restart binda z nowymi plikami konfiguracyjnymi.
-
- 	**TAG:** DNS_SRV, DNS_CFG_FILES, DNS_SLAVE
-
-  - **firewall** - Otwarcie portu `53` dla świata.
-
- 	**TAG:** , DNS_SLAVE
 
 ## `dhcp_srv` - Serwer DHCP
+
+**Uwaga:** To jest wyłączone. Serwer DHCP przenieiony na ruter. 
 
 Intalacja i konfiguracja serwera Kea.
 

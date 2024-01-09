@@ -1,4 +1,8 @@
 [all]
 pi.dev.null ifname="eth0" 
-malina.dev.null ifname="eth0"
+#malina.dev.null ifname="eth0"
 #fredzia.host-only ifname="ens3"
+
+[dns_srvs]
+pi.dev.null
+#malina.dev.null

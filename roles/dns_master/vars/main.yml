@@ -1,3 +1,7 @@
 dns_pkgs:
   - bind
   - bind-utils
+
+dnsmasq_pkgs:
+  - dnsmasq
+  - bind-utils
