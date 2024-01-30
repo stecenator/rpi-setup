@@ -1,0 +1,80 @@
+---
+# Główny task instalacji webserwera w na PI
+# marcin_stec@pl.ibm.com
+
+  - name: Status repozytorium
+    stat:
+      path: "{{ doc_root }}/repodata"
+    register: repo
+
+  
+  - name: Pakiety serwera web
+    dnf:
+      name: "{{ web_pkgs }}"
+      state: latest
+    tags:
+      - "WEB_PKGS"
+
+  - name: Otwieranie portów firewalla
+    firewalld:
+      service: "{{ item }}"
+      state: enabled
+      permanent: yes
+    with_items: "{{ fw_services }}"
+    tags:
+      - "FW"
+      - "SEC"
+
+  - name: Ustawianie bulionów dla Lighttpd
+    seboolean:
+      name: httpd_setrlimit
+      state: true
+      persistent: true
+    when: ansible_facts.selinux.status == 'enabled'
+    tags:
+      - "HTTPD"
+      - "SEC"
+
+  - name: Wrzucanie pliku index.html
+    template:
+      src: index.html.j2
+      dest: "{{ doc_root }}/index.html"
+      owner: "lighttpd"
+      group: "lighttpd"
+    tags:
+      - "HTTPD"
+
+  - name: "Zezwolenie na directory browsing w {{ ba_root }}"
+    copy:
+      src: dirlisting.conf
+      dest: "/etc/lighttpd/conf.d/"
+    tags:
+      - "HTTPD"
+
+  - name: "Dodawanie polityk SELinux dla katalogu {{ doc_root}}"
+    sefcontext:
+      target: '{{ doc_root }}(/.*)?'
+      seuser: "system_u"
+      setype: "httpd_sys_rw_content_t"
+      state: present
+    when: ansible_facts.selinux.status == 'enabled'
+    tags:
+      - "SEC"
+      - "HTTPD"
+      - "BA"
+
+  - name: "Ustawianie kontekstu SELinux na {{ doc_root }}"
+    command: restorecon -irv "{{ doc_root }}"
+    when: ansible_facts.selinux.status == 'enabled'
+    tags:
+      - "SEC"
+      - "HTTPD"
+      - "BA"
+
+  - name: Włączanie Lighttpd
+    systemd:
+      name: lighttpd.service
+      state: reloaded
+      enabled: true
+    tags:
+      - "HTTPD"

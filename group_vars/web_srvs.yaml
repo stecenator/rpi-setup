@@ -1,0 +1,9 @@
+---
+web_pkgs:
+  - lighttpd
+
+doc_root: "/var/www/lighttpd"
+
+fw_services:
+  - "http"
+  - "https"

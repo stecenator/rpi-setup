@@ -16,3 +16,7 @@
       when: master_dhcp
     - role: ha
       when: ha_srv
+    - role: web_srv
+      when: web_srvs
+      tags:
+        - "WEB"

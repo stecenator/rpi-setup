@@ -61,7 +61,7 @@
       - "DNS_CFG_FILES"
       - "DNS_MASTER"
 
-  - name: Aktualizaccja /etc/hosts
+  - name: Aktualizacja /etc/hosts
     lineinfile:
         path: /etc/hosts
         line: "{{lookup('file', 'devnull-hosts')}}"
@@ -90,6 +90,7 @@
       service: dns
       state: enabled
       permanent: yes
+      immediate: True
     tags:
       - "DNS_FW"
       - "DNS_MASTER"
