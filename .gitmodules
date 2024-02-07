@@ -1,3 +1,6 @@
 [submodule "roles/web_srv"]
 	path = roles/web_srv
 	url = https://github.com/stecenator/web_srv.git
+[submodule "roles/ba_repo"]
+	path = roles/ba_repo
+	url = git@github.com:stecenator/ba_repo.git
