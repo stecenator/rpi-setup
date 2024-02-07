@@ -1,3 +1,4 @@
 master_dhcp: False
 ha_srv: True
 web_srvs: True
+ba_repo: True

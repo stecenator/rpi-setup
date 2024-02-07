@@ -20,3 +20,5 @@
       when: web_srvs
       tags:
         - "WEB"
+    - role: ba_repo
+      when: web_srvs and ba_repo
