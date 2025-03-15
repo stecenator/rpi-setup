@@ -10,8 +10,12 @@
 
   roles:
     - role: os_cfg
+      tags: 
+         - "OS"
     - role: dns_master 
       when: master_dns
+      tags:
+        - "DNS"
     - role: dhcpd_srv
       when: master_dhcp
     - role: ha

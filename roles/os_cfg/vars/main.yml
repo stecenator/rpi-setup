@@ -1,14 +1,19 @@
 dns_servers:
-    - 192.168.1.12
-    - 192.168.1.29
-    - 89.108.195.21
+  - 192.168.1.12
+  - 192.168.1.29
+  - 89.108.195.21
 
 dom_name: dev.null
 
 dns_search:
-    - dev.null
-    - iic.pl.ibm.com
-    - pl.ibm.com
+  - dev.null
+  - iic.pl.ibm.com
+  - pl.ibm.com
 
+# Wspólne paczki jakie chce mieć na wszystkich hostach, niezależnie od roli
 pkgs:
-    - telnet
+  - telnet
+  - nmon
+  - python3-libdnf5
+  - nethogs
+  - nmap
