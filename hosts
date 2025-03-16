@@ -4,7 +4,7 @@ malina.dev.null ifname="enu1u1"
 #fredzia.host-only ifname="ens3"
 
 [dns_srvs]
-# pi.dev.null
+pi.dev.null
 malina.dev.null
 
 [web_srvs]

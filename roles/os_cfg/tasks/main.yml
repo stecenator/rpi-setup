@@ -13,10 +13,10 @@
         mode: 0440
     tags: "CFG_FILES"
 
-  - name: Pokaż flaki
-    debug:
-        var: ansible_facts
-    tags: "DBG"
+  # - name: Pokaż flaki
+  #   debug:
+  #       var: ansible_facts
+  #   tags: "DBG"
 
 #  - name: Lista połączeń nmcli
 #    shell: nmcli -t  c s  --active | cut -f 1,4 -d ':' 
