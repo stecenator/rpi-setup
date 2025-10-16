@@ -61,18 +61,35 @@
       - "DNS_CFG_FILES"
       - "DNS_MASTER"
 
-  - name: Aktualizacja /etc/hosts
-    lineinfile:
-        path: /etc/hosts
-        line: "{{lookup('file', 'devnull-hosts')}}"
-        create: yes
-        state: present
-        owner: root
-        group: root
-        mode: 0644
+  - name: Synchronizacja devnull-hosts z /etc/hosts
+    block:
+      # - name: czytanie /etc/hosts na zdalnych hostach
+      #   ansible.builtin.slurp:
+      #     src: /etc/hosts
+      #   register: remote_hosts
+
+      # - name: Konwersja zdalnych /etc/hosts na linijki
+      #   ansible.builtin.set_fact:
+      #     remote_lines: "{{ remote_hosts['content'] | b64decode | splitlines() }}"
+
+      - name: Dodawanie linijek z devnull-hosts do zdalnych /etc/hosts
+        vars:
+          remote_lines: "{{ lookup('file', '/etc/hosts').splitlines() }}"
+        ansible.builtin.lineinfile:
+          path: /etc/hosts
+          line: "{{ item }}"
+          state: present
+        loop: "{{ local_hosts_file }}"
+        when: item not in remote_lines
+      # - name: tvn24
+      #   debug:
+      #     var: local_hosts_file
+    vars:
+      local_hosts_file: "{{ lookup('file', 'devnull-hosts').splitlines() }}"
     tags: 
       - "DNS_ZONES"
       - "DNS_MASTER"
+      - "SYNC_HOSTS"
 
   - name: "(Re)startowanie dnsmasq"
     systemd:
